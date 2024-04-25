@@ -1,0 +1,16 @@
+﻿@using Assighment.ViewModels
+@model CourseUsingVM
+@{
+    ViewData["Title"] = "GetCourseUsingVM";
+}
+
+<h1 style="@Model.stdDescription">GetCourseUsingVM</h1>
+@Model.stdId
+@Model.stdName
+<select class="form-control">
+    @foreach (var item in Model.Branches)
+    {
+        <option>@item</option>
+    }
+</select>
+

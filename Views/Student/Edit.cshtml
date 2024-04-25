@@ -1,0 +1,59 @@
+﻿@model Student
+@{
+    ViewData["Title"] = "Edit";
+}
+<a href="/Student/GetStudentUsingViewModel/@Model.Id"class="btn btn-success">VM using pure Html</a>
+<br/>
+@Html.ActionLink("VM Using HTML Helper", "GetStudentUsingViewModel", "Student",
+new {id=Model.Id,address="assuit"},new{@class="btn btn-success"})
+<br />
+<a asp-action="GetStudentUsingViewModel"asp-controller="Student"
+    asp-route-id="@Model.Id"asp-route-Salary="Assuit"         
+    
+   class="btn btn-success">VM Using Tag Help</a>   <!-- Achor Tag =>> replace pass is a paramater ... is pass a Atribute Tag -->
+<h1>Edit</h1>
+<form method="post"asp-controller="Student" asp-action="/student/SaveEdit/@Model.Id">
+    <div>
+        <label asp-for="Name"></label>
+        @* <input type="text" name="Name" id="Name" value="@Model.Name" class="form-control" />
+        @Html.TextBox("Name", null, new { style = "color:red",@class="form-control" })
+        @Html.TextBoxFor(s => s.Name, new {style = "color:blue", @class = "form-control" }) 
+        @Html.EditorFor(s=>s.Name)*@
+        <input asp-for="Name" class=" form-control" />
+        <!-- id = Name name ="Name" value ="@Model.Name" type ="text" -->
+    </div>
+    <div>
+        <label>Address</label>
+        <input type="text" name="Address" id="Address" value="@Model.Address" class="form-control" />
+    </div>
+    <div>
+        <label>Age</label>
+@*         <input type="number" name="Age" id="Age" value="@Model.Age" class="form-control" />
+ *@ 
+ @Html.EditorFor(x=>x.Age,new{htmlAttributes=new{@class="form-control"}})
+</div>
+    <div>
+        <label>Image</label>
+        <input type="text" name="Image" id="Image" value="@Model.Image" class="form-control" />
+    </div>
+    <div>
+        <label>DEpartment</label>
+        @*<input type="number" name="Dept_Id" id="Dept_Id" value="@Model.Dept_Id" class="form-control" />*@
+        <select name="Dept_Id" id="Dept_Id" class="form-control">
+            @foreach (Department deptItem in ViewBag.DeptList)
+            {
+                if (Model.Dept_Id == deptItem.Id)
+                {
+                    <option value="@deptItem.Id" selected>@deptItem.Name</option>
+                }
+                else
+                {
+                    <option value="@deptItem.Id">@deptItem.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <input type="submit" asp-action ="SaveEdit" asp-controller ="Student" asp-route-id ="@Model.Id" class="btn btn-primary" value="Save" />
+
+
+</form>

@@ -1,0 +1,54 @@
+﻿@model List< Student>
+@{
+    ViewData["Title"] = "Index";
+}
+<a asp-controller="Student"asp-action="New">New Using Tag helper</a>
+<div style="border:3px solid blue"id="StudentDetails">
+
+</div>
+<h1>Index</h1>
+<table class="table table-bordered table-hover" style=" background-color:darksalmon"  >
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td><a href="#" onclick="GetData(@item.Id)">@item.Name</a></td>
+ 
+            @*<td><partial name="_StudentCardPartial"model="item"></partial></td>*@
+            <td>@item.Department.Name</td>
+            <td><a href="/Student/Edit/@item.Id">Edit</a></td>
+            <td><a href="/Student/Delete/@item.Id">Delete</a> </td>
+
+        </tr>
+    }
+</table>
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js">
+
+    </script>
+   
+    
+    <script>
+        
+        function GetData(stdid) {
+            console.log(stdid);
+            event.preventDefault();
+            //Ajax call JQuery
+                $.ajax(
+                    
+                  {
+                    url: "/Student/DetailsUsingPartial/"+stdid,// url action partialview ,json
+                       // data{"Id":stdid},
+                    success: function (result) {
+                        console.log(result);
+                        document.getElementById("StudentDetails").innerHTML = result;
+                    }
+                }
+            );
+            
+        }
+        function fun1(){
+            var id = @Model.FirstOrDefault().Id;
+        }
+    </script>
+}

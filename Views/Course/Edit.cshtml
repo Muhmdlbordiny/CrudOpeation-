@@ -1,0 +1,66 @@
+﻿@model Course
+@{
+    ViewData["Title"]= "Edit";
+    SelectList deptlist =
+               new SelectList(ViewBag.Deptitem, "Id", "Name");
+    SelectList institem = new SelectList(ViewBag.Institem, "Id", "Name");
+}
+<h2>Edit</h2>
+<form asp-action="/Course/SaveEdit/@Model.Id" method="post">
+    <div asp-validation-summary="All"class="text-danger"></div>
+    <div class="form-control">
+        <label asp-for="Name"></label>
+        <input asp-for="Name"  class="form-control" />
+        <span asp-validation-for="Name"class="text-danger"></span>
+
+    </div>
+    <div class="form-control">
+        <label asp-for="degre"></label>
+        <input asp-for="degre" class="form-control" />
+        <span asp-validation-for="degre"class="text-danger"></span>
+    </div>
+    <div class="form-control">
+        <label asp-for="mindegree"></label>
+        <input asp-for="mindegree"class="form-control" />
+        <span asp-validation-for="mindegree" class="text-danger"></span>
+    </div>
+
+    <div class="form-control">
+        
+       @* <input type="number" class="form-control" name="DEpId"
+        id="DEpId"value="@Model.DEpId" />@**@
+        @*<select name="DEpId"class="form-control">
+            @foreach(var item in ViewBag.Depts)
+            {
+                if (item.Id == Model.Dept_Id)
+                {
+                    <option value="@item.Id" selected ="selected">@item.Name</option>
+                }
+                else
+                {
+                    <option value=" @item.Id">@item.Name</option>
+                }
+            }
+        </select>*@
+        <select asp-items="deptlist"asp-for="Dept_Id"class="form-control">
+            <option value="0">--Select Department</option>
+        </select>
+        <span asp-validation-for="Dept_Id"class="text-danger"></span>
+
+    </div>
+    <div>
+        <select asp-items="institem"asp-for="Inst_Id"class="form-control">
+            <option value="0">--Select Instructor--</option>
+        </select>
+        <span asp-validation-for="Inst_Id"class="text-danger"></span>
+
+    </div>
+    <input type="submit"value="Save"asp-action="SaveEdit"asp-controller="Course"asp-route-id ="@Model.Id" class="btn btn-success" />
+
+
+</form>
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

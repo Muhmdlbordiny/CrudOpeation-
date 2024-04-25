@@ -1,0 +1,30 @@
+﻿@model Student
+@{
+    Layout = "_MyLayout";
+    ViewData["Title"] = "getstudent";
+}
+<h1 style="background-color:@(ViewBag.color)">GetStudent</h1>
+@Model.Name
+msg = @ViewData["msg"]
+temp = @(int.Parse(ViewData["temp"].ToString())+10)
+<h1>Using View Data</h1>
+<select class="form-control">
+    @foreach (var item in (List<string>)ViewData["brc"])
+    {
+        <option>@item</option>
+    }
+
+</select>
+<h1>Using ViewBag</h1>
+<select class="form-control">
+    @foreach(var item in ViewBag.brc)
+    {
+        <option>@item</option>
+    }
+</select>
+@section MenuSection{
+    <h1>Message from view  in  Menu section</h1>
+}
+@section FooterSection{
+    <h1>Message from view in Footer section</h1>
+}

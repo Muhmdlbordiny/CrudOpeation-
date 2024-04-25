@@ -1,0 +1,24 @@
+﻿@model Department
+@{
+    ViewData["Title"] = "Details";
+}
+<h2>Details</h2>
+@* @<h2>@Model.Name</h2>
+<h3>@Model.Manger</h3>
+<div style="display:flex">
+    @foreach (var item in Model.Course)
+    {
+        <div style="margin:3px;border:2px solid blue">
+           @* <img src="~/Content/Images/@item.Image" style="width:30px;height:30px;border:2px solid red  " />
+            <br />
+            Name:@item.Name
+        </div>
+    }
+
+</div>
+<a href="/Department/Index/" class="btn btn-primary">Back to List</a>*@
+<ul>
+    <li>@Model.Name</li>
+    <li>@Model.Manger</li>
+</ul>
+<a href="/Department/Index">Back to List</a>

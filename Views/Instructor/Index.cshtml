@@ -1,0 +1,60 @@
+﻿@model List< Instructor>
+    @{
+        ViewData["Title"] = "Index";
+    }
+
+    @*<h1>Index</h1>
+    <a href="/instructor/NewInstructor"class="btn btn-success">New Instructor</a>
+    <br />
+    <table class="table-bordered table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Salary</th>
+            <th>Image</th>
+            <th>DeptId</th>
+
+        </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <th>@item.Id</th>
+            <th>@item.Name</th>
+            <th>@item.Address</th>
+            <th>@item.Salary</th>
+            <th>@item.Image</th>
+            <th>@item.Dept_id</th>
+        </tr>
+    }
+
+
+    </table>*@
+<a asp-controller="Instructor" asp-action="NewInstructor" class="btn btn-success">New Instructor"Login"</a>
+<h1>Index</h1>
+<table class="table table-bordered table-hover"style="background-color:palevioletred">
+    <tr style="background-color:darksalmon">
+        <th>Name</th>
+        <th>Depart</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+        
+             <td>@item.Name</td>
+            
+            <td>@item.Department.Name</td>
+            <td><a href="/Instructor/Edit/@item.Id" class="btn btn-success">Edit</a></td>
+            <td><a href="/Instructor/Delete/@item.Id" class="btn btn-success">Delete</a> </td>
+        </tr>
+        
+    }
+</table>
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js">
+
+    </script>
+}
+

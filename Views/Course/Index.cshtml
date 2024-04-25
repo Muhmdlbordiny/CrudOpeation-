@@ -1,0 +1,31 @@
+﻿@model List<Course>
+@{
+    ViewData["Title"] = "Index";
+}
+<a asp-controller="Course" asp-action="New" class="btn btn-success">New Course</a>
+
+<h1>Index</h1>
+<table class="table-bordered table-hover"style="background-color:palegreen"border="1"width="100%" height="100%" align="center">
+    <tr style="background-color:antiquewhite">
+        <th>Name of Course</th>
+        <th>Name ofDepartment </th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Department.Name</td>
+            <td><a href="/Course/Edit/@item.Id" class="btn-success">Edit</a></td>
+            <td><a href="/Course/Delete/@item.Id" class="btn-success">Delete</a></td>
+        </tr>
+    }
+</table>
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js">
+
+    </script>
+}
+
+

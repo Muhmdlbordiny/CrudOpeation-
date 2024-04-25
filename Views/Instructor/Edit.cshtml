@@ -1,0 +1,49 @@
+﻿ @model Instructor
+@{
+    ViewData["Title"] = "Edit";
+    SelectList deptlist =
+                        new SelectList(ViewBag.DeptList, "Id", "Name");
+}
+<a href="/Instructor/GetInstructorUsingViewModel/@Model.Id" class="btn btn-success">View All Instructor</a>
+</br>
+<a asp-action="GetInstructorUsingViewModel"asp-controller="Instructor"
+    asp-route-id="@Model.Id"asp-route-Salary="@Model.Salary"
+    asp-fragment="Section1"
+   class="btn btn-success">VM Using Tag Help</a>
+<h1>Edit</h1>
+<form method="post" asp-controller="Instructor" asp-action="/Instructor/SaveEdit/@Model.Id">
+<div>
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form-control" />
+</div>    
+<div>
+    <label asp-for="Address"></label>
+    <input asp-for="Address"class="form-control" />
+
+</div>
+<div>
+    <label asp-for="Image"></label>
+    <input asp-for="Image"class="form-control" />
+
+</div>
+<div>
+    <label asp-for="Salary"></label>
+    <input asp-for="Salary"class="form-control" />
+</div>
+<div>
+    <label asp-for="Dept_id"class="form-control"></label>
+    <select asp-items="deptlist"asp-for="Dept_id"class="form-control">
+        <option value="0">--select Department</option>
+
+    </select>
+    <span asp-validation-for="Dept_id"class="text-danger"></span>
+</div>
+    <input type="submit" value="Create" asp-action="SaveEdit"asp-controller="Instructor" asp-route-id ="@Model.Id" class="btn btn-success" />
+
+</form>
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}
+

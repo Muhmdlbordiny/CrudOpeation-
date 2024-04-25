@@ -1,0 +1,10 @@
+﻿@using Assighment.Repositry
+@inject IStudentRepositry stdRepo
+@{
+    ViewData["Title"] = "TestService";
+}
+
+<h1>TestService</h1>
+<h1>Controller service ID = @ViewBag.serviceID</h1>
+<h1>View Service Id = @stdRepo.Id</h1>
+

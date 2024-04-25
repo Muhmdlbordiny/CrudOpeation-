@@ -1,0 +1,8 @@
+﻿@model Student
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+<partial name="_StudentCardPartial"model="Model"></partial>
+<a asp-action="Index"asp-controller="Student">Back to List</a>

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "show all course";
+}
+<h1>show all course</h1>
+<a href="/course/Newcourse"class="btn btn-success">NewCourse</a>
+<br />
+<table class="table table-bordered table-hover">
+
+  
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>mindegree</td>
+            <td>degre</td>
+            <td>DEpId</td>
+
+        </tr>
+    @foreach(var item in Model)
+    {
+       <td>@item.Id</td>
+       <td>@item.Name</td>
+       <td>@item.degre</td>
+       <td>@item.mindegree</td>
+       <td>@item.Dept_Id</td>
+       
+    }
+    
+</table>
